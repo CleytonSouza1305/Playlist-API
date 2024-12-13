@@ -14,17 +14,6 @@ function generateId() {
   return Math.floor(Math.random() * 999999)
 }
 
-const formatDate = () => {
-  return new Date().toLocaleString('pt-BR', {
-    year: 'numeric',  
-    month: '2-digit', 
-    day: '2-digit',  
-    hour: '2-digit', 
-    minute: '2-digit', 
-    second: '2-digit', 
-  });
-};
-
 module.exports = {
   getAllPlaylists: () => {
     return playlistArray
@@ -36,8 +25,8 @@ module.exports = {
       playlistName,
       tags: tags ?? [], 
       musics: musics ?? [],
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
+      createdAt: new Date().toLocaleString(),
+      updatedAt: new Date().toLocaleString(),
       favorite: false
     }
 

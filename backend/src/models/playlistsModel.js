@@ -42,14 +42,32 @@ module.exports = {
     return playlist
   },
 
+  getIndexById: (id) => {
+    const playlist = playlistArray.findIndex((pl) => pl.id === +id)
+    return playlist
+  },
+
   update: (id, playlistName, tags, musics, favorite) => {
     const playlistIndex = playlistArray.findIndex((pl) => pl.id === +id)
     const playlist = playlistArray.find((pl) => pl.id === +id)
 
     playlist.playlistName = playlistName
-    playlist.tags = tags
-    playlist.musics = musics
+
+    if (tags) {
+      tags.forEach((tag) => {
+        atualizedPlaylist.tags.push(tag)
+      })
+    }
+
+    if (musics) {
+      musics.forEach((music) => {
+        atualizedPlaylist.musics.push(music)
+      })
+    }
+
     playlist.favorite = favorite
+
+    playlist.updatedAt = new Date().toLocaleString()
 
     playlistArray[playlistIndex] = playlist
   }

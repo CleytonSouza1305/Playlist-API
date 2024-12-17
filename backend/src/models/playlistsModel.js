@@ -55,13 +55,17 @@ module.exports = {
 
     if (tags) {
       tags.forEach((tag) => {
-        atualizedPlaylist.tags.push(tag)
+        if (!playlist.tags.includes(tag)) {
+          playlist.tags.push(tag)
+        }
       })
     }
 
     if (musics) {
       musics.forEach((music) => {
-        atualizedPlaylist.musics.push(music)
+        if (!playlist.musics.includes(music)) {
+          playlist.musics.push(music)
+        }
       })
     }
 

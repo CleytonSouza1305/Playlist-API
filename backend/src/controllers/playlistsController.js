@@ -95,6 +95,6 @@ module.exports = {
       return res.status(404).json({ message: 'playlist not found.' })
     }
 
-    res.status(201).json({ message: 'playlist deleted with successfully!' })
+    res.status(200).json({ message: 'playlist deleted with successfully!' })
   }
 }

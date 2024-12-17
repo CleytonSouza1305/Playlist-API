@@ -1,4 +1,4 @@
-const { getAllPlaylists, createPlaylist, save, getPlayllstById, update } = require("../models/playlistsModel")
+const { getAllPlaylists, createPlaylist, save, getPlayllstById, update, deletePlay } = require("../models/playlistsModel")
 
 module.exports = {
   // GET /playlists
@@ -42,7 +42,7 @@ module.exports = {
     const playlist = createPlaylist(title, tags, musics)
     save(playlist)
 
-    res.status(201).json({ message: 'playlist saved with successful!', playlist})
+    res.status(201).json({ message: 'playlist saved with successfully!', playlist})
   },
 
   // GET /playlists/:id
@@ -84,5 +84,17 @@ module.exports = {
 
     const updatedPlaylist = getPlayllstById(+id)
     res.status(200).json(updatedPlaylist)
+  },
+
+  // DELETE /playlists/:id
+  deletePlaylist: (req, res) => {
+    const { id } = req.params
+    const playlist = deletePlay(id)
+
+    if (playlist === -1) {
+      return res.status(404).json({ message: 'playlist not found.' })
+    }
+
+    res.status(201).json({ message: 'playlist deleted with successfully!' })
   }
 }

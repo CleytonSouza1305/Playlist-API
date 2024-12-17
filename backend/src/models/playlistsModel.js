@@ -74,6 +74,11 @@ module.exports = {
     playlist.updatedAt = new Date().toLocaleString()
 
     playlistArray[playlistIndex] = playlist
+  },
+
+  deletePlay: (id) => {
+    const playlisIndex = playlistArray.filter((pl) => pl.id !== +id)
+    playlistArray = playlisIndex
   }
 
 }
